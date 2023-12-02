@@ -3,6 +3,7 @@
 #include <memory>
 #include <cublas_v2.h>
 #include <cuda.h>
+#include <fstream>
 
 #ifndef LAYER_H
 #define LAYER_H
@@ -11,8 +12,9 @@
 const static float dt = 1.0E-01f;
 const static float threshold = 1.0E-02f;
 
-class Layer {
-	public:
+class Layer
+{
+public:
 	int M, N, O;
 
 	float *output;
@@ -26,14 +28,15 @@ class Layer {
 	float *d_weight;
 
 	Layer(int M, int N, int O);
+	Layer(int M, int N, int O, FILE *weights_file);
 
 	~Layer();
 
 	void setOutput(float *data);
 	void clear();
 	void bp_clear();
+	void save(std::ofstream &weights_file);
 };
-
 
 // Utility CUDA kernel functions
 __device__ float step_function(float v);
