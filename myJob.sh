@@ -8,10 +8,13 @@
 #SBATCH --mem-per-cpu=4G
 
 # # Testing script
-# ./CNN -test "weights_pool.txt" >> "output.txt"
+# ./CNN -test >> "output.txt"
 
 #Training command
-# ./CNN -train 5 "weights_pool.txt" >> "output.txt"
+# ./CNN -train 5 "weights.txt" >> "output.txt"
 
-# # Traniing and Testing
-./CNN -both >> "output.txt"
+# # Traniing and Testing on GPU
+# ./CNN -both >> "output.txt"
+
+# # Traniing and Testing on CPU
+./CNN -cpu >> "output.txt"

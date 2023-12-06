@@ -1,88 +1,18 @@
-Test Accuracy: 97.05%
 Learning
-epoch: 1, error: 2.863248e-01, time_on_gpu: 4.752183
-epoch: 2, error: 1.731827e-01, time_on_gpu: 9.476803
-epoch: 3, error: 1.517470e-01, time_on_gpu: 14.193375
-epoch: 4, error: 1.418599e-01, time_on_gpu: 18.911706
-epoch: 5, error: 1.360751e-01, time_on_gpu: 23.638701
+epoch: 1, error: 1.004081e-01, time_on_gpu: 0.416326
+epoch: 2, error: 8.166444e-02, time_on_gpu: 0.829294
+epoch: 3, error: 6.223805e-02, time_on_gpu: 1.237342
+epoch: 4, error: 5.344948e-02, time_on_gpu: 1.652090
+epoch: 5, error: 4.845433e-02, time_on_gpu: 2.053558
 
- Time - 23.638701
-Test Accuracy: 95.61%
+ Time - 2.053558
+Test Accuracy: 74.65%
 Learning
-epoch: 1, error: 1.172107e+00, time_on_gpu: 4.928004
-epoch: 2, error: 1.094908e+00, time_on_gpu: 9.846626
-epoch: 3, error: 1.076399e+00, time_on_gpu: 14.767493
-epoch: 4, error: 1.065204e+00, time_on_gpu: 19.713303
-epoch: 5, error: 1.055218e+00, time_on_gpu: 24.668372
+epoch: 1, error: 1.006501e-01, time_on_cpu: 20.759054
+epoch: 2, error: 8.100357e-02, time_on_cpu: 41.529291
+epoch: 3, error: 6.555029e-02, time_on_cpu: 62.303445
+epoch: 4, error: 5.746750e-02, time_on_cpu: 83.064250
+epoch: 5, error: 5.230096e-02, time_on_cpu: 103.821044
 
- Time - 24.668372
-Test Accuracy: 15.54%
-Test Accuracy: 8.92%
-Test Accuracy: 8.93%
-Learning
-epoch: 1, error: 1.103877e+00, time_on_gpu: 4.978106
-epoch: 2, error: 9.711152e-01, time_on_gpu: 9.919639
-epoch: 3, error: 9.132478e-01, time_on_gpu: 14.862314
-epoch: 4, error: 8.740193e-01, time_on_gpu: 19.803740
-epoch: 5, error: 8.456874e-01, time_on_gpu: 24.754173
-
- Time - 24.754173
-Test Accuracy: 35.77%
-Learning
-epoch: 1, error: 1.104242e+00, time_on_gpu: 4.950931
-epoch: 2, error: 9.818495e-01, time_on_gpu: 9.883644
-epoch: 3, error: 9.237279e-01, time_on_gpu: 14.815747
-epoch: 4, error: 8.818713e-01, time_on_gpu: 19.764914
-epoch: 5, error: 8.518143e-01, time_on_gpu: 24.718311
-
- Time - 24.718311
-Test Accuracy: 38.34%
-Learning
-epoch: 1, error: 2.420975e-01, time_on_gpu: 5.000081
-epoch: 2, error: 1.617320e-01, time_on_gpu: 9.993667
-epoch: 3, error: 1.490652e-01, time_on_gpu: 14.992419
-epoch: 4, error: 1.416202e-01, time_on_gpu: 19.988345
-epoch: 5, error: 1.363220e-01, time_on_gpu: 25.016773
-
- Time - 25.016773
-Test Accuracy: 95.60%
-Learning
-epoch: 1, error: 2.550327e-01, time_on_gpu: 5.319344
-epoch: 2, error: 1.610446e-01, time_on_gpu: 10.611681
-epoch: 3, error: 1.447447e-01, time_on_gpu: 15.913903
-epoch: 4, error: 1.367593e-01, time_on_gpu: 21.211422
-epoch: 5, error: 1.318463e-01, time_on_gpu: 26.519562
-
- Time - 26.519562
-Test Accuracy: 95.88%
-Test Accuracy: 8.92%
-Test Accuracy: 95.88%
-Test Accuracy: 8.92%
-Learning
-epoch: 1, error: 4.982381e-01, time_on_gpu: 4.928026
-epoch: 2, error: 2.625526e-01, time_on_gpu: 9.814067
-epoch: 3, error: 2.039967e-01, time_on_gpu: 14.704091
-epoch: 4, error: 1.762313e-01, time_on_gpu: 19.617172
-epoch: 5, error: 1.597634e-01, time_on_gpu: 24.505593
-
- Time - 24.505593
-Test Accuracy: 95.52%
-Test Accuracy: 95.52%
-Learning
-epoch: 1, error: 6.117766e-01, time_on_gpu: 4.551187
-epoch: 2, error: 3.838328e-01, time_on_gpu: 9.079447
-epoch: 3, error: 3.251671e-01, time_on_gpu: 13.605233
-epoch: 4, error: 2.862250e-01, time_on_gpu: 18.127857
-epoch: 5, error: 2.571661e-01, time_on_gpu: 22.646975
-
- Time - 22.646975
-Test Accuracy: 92.60%
-Learning
-epoch: 1, error: 6.517969e-01, time_on_gpu: 4.580344
-epoch: 2, error: 3.982866e-01, time_on_gpu: 9.139122
-epoch: 3, error: 3.334276e-01, time_on_gpu: 13.695003
-epoch: 4, error: 2.924800e-01, time_on_gpu: 18.246548
-epoch: 5, error: 2.635779e-01, time_on_gpu: 22.796648
-
- Time - 22.796648
-Test Accuracy: 92.56%
+ Time - 103.821044
+Test Accuracy: 73.60%

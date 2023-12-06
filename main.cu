@@ -23,10 +23,15 @@ static Layer *l_s1;
 static Layer *l_f;
 
 static void learn(int start_epoch, int end_epoch);
+static void cpu_learn(int start_epoch, int end_epoch);
 static unsigned int classify(double data[28][28]);
+static unsigned int cpu_classify(double data[28][28]);
 static void test();
+static void cpu_test();
 static double forward_pass(double data[28][28]);
+static double cpu_forward_pass(double data[28][28]);
 static double back_pass();
+static double cpu_back_pass();
 
 static inline void loaddata()
 {
@@ -38,36 +43,36 @@ static inline void loaddata()
 
 static void init_layers()
 {
-	l_input = new Layer(0, 0, 28 * 28);
-	l_c1 = new Layer(5 * 5, 6, 24 * 24 * 6);
-	l_s1 = new Layer(4 * 4, 1, 6 * 6 * 6);
-	l_f = new Layer(6 * 6 * 6, 10, 10);
-}
-
-static void cpu_init_layers()
-{
 	l_input = new Layer(0, 0, 28 * 28, true);
 	l_c1 = new Layer(5 * 5, 6, 24 * 24 * 6, true);
 	l_s1 = new Layer(4 * 4, 1, 6 * 6 * 6, true);
 	l_f = new Layer(6 * 6 * 6, 10, 10, true);
 }
 
+static void cpu_init_layers()
+{
+	l_input = new Layer(0, 0, 28 * 28, false);
+	l_c1 = new Layer(5 * 5, 6, 24 * 24 * 6, false);
+	l_s1 = new Layer(4 * 4, 1, 6 * 6 * 6, false);
+	l_f = new Layer(6 * 6 * 6, 10, 10, false);
+}
+
 static void cpu_init_layers(const char *weights_file)
+{
+	FILE *file = fopen(weights_file, "r");
+	l_input = new Layer(0, 0, 28 * 28, file, false);
+	l_c1 = new Layer(5 * 5, 6, 24 * 24 * 6, file, false);
+	l_s1 = new Layer(4 * 4, 1, 6 * 6 * 6, file, false);
+	l_f = new Layer(6 * 6 * 6, 10, 10, file, false);
+}
+
+static void init_layers(const char *weights_file)
 {
 	FILE *file = fopen(weights_file, "r");
 	l_input = new Layer(0, 0, 28 * 28, file, true);
 	l_c1 = new Layer(5 * 5, 6, 24 * 24 * 6, file, true);
 	l_s1 = new Layer(4 * 4, 1, 6 * 6 * 6, file, true);
 	l_f = new Layer(6 * 6 * 6, 10, 10, file, true);
-}
-
-static void init_layers(const char *weights_file)
-{
-	FILE *file = fopen(weights_file, "r");
-	l_input = new Layer(0, 0, 28 * 28, file);
-	l_c1 = new Layer(5 * 5, 6, 24 * 24 * 6, file);
-	l_s1 = new Layer(4 * 4, 1, 6 * 6 * 6, file);
-	l_f = new Layer(6 * 6 * 6, 10, 10, file);
 }
 
 static void save_weights(const char *weights_file)
@@ -127,9 +132,9 @@ int main(int argc, const char **argv)
 	}
 	else if (strcmp(argv[1], "-cpu") == 0) {
 		loaddata();
-		cpu_init_layers("weights_pool.txt");
-		// learn(1, 5);
-		test();
+		cpu_init_layers();
+		cpu_learn(1, 5);
+		cpu_test();
 		destroy_layers();
 	}
 	else
@@ -212,7 +217,6 @@ static double cpu_forward_pass(double data[28][28])
 	start = clock();
 
 	l_input->cpu_setOutput((float *)input);
-	
 	cpu_fp_preact_c1((float(*)[28])l_input->output, (float(*)[24][24])l_c1->preact, (float(*)[5][5])l_c1->weight);
 	cpu_fp_bias_c1((float(*)[24][24])l_c1->preact, l_c1->bias);
 	cpu_apply_step_function(l_c1->preact, l_c1->output, l_c1->O);
@@ -272,6 +276,43 @@ static double back_pass()
 	return ((double)(end - start)) / CLOCKS_PER_SEC;
 }
 
+// Back propagation to update weights
+static double cpu_back_pass()
+{
+	clock_t start, end;
+
+	start = clock();
+
+	cpu_bp_weight_f((float(*)[6][6][6])l_f->d_weight, l_f->d_preact, (float(*)[6][6])l_s1->output);
+	cpu_bp_bias_f(l_f->bias, l_f->d_preact);
+
+	cpu_bp_output_s1((float(*)[6][6])l_s1->d_output, (float(*)[6][6][6])l_f->weight, l_f->d_preact);
+	cpu_bp_preact_s1((float(*)[6][6])l_s1->d_preact, (float(*)[6][6])l_s1->d_output, (float(*)[6][6])l_s1->preact);
+
+	// Original s1 layer
+	// bp_weight_s1<<<64, 64>>>((float(*)[4][4])l_s1->d_weight, (float(*)[6][6])l_s1->d_preact, (float(*)[24][24])l_c1->output);
+	// bp_bias_s1<<<64, 64>>>(l_s1->bias, (float(*)[6][6])l_s1->d_preact);
+	// bp_output_c1<<<64, 64>>>((float(*)[24][24])l_c1->d_output, (float(*)[4][4])l_s1->weight, (float(*)[6][6])l_s1->d_preact);
+
+	// Average Pooling
+	cpu_bp_avgpool_s1((float(*)[24][24])l_c1->d_output, (float(*)[6][6])l_s1->d_preact);
+	// dim3 blockSize(8, 8, 8); // Block size of 8x8x8
+	// // For bp_maxpool_s1 (input size of 6x24x24)
+	// dim3 gridSizeBp((24 + blockSize.x - 1) / blockSize.x, (24 + blockSize.y - 1) / blockSize.y, (6 + blockSize.z - 1) / blockSize.z);
+
+	// bp_maxpool_s1<<<gridSizeBp,blockSize>>>((float(*)[24][24])l_c1->d_output, (float(*)[6][6])l_s1->d_preact, (int*) l_s1->maxIndices, 24, 24, 6, 6, 4, 6);
+	cpu_bp_preact_c1((float(*)[24][24])l_c1->d_preact, (float(*)[24][24])l_c1->d_output, (float(*)[24][24])l_c1->preact);
+	cpu_bp_weight_c1((float(*)[5][5])l_c1->d_weight, (float(*)[24][24])l_c1->d_preact, (float(*)[28])l_input->output);
+	cpu_bp_bias_c1(l_c1->bias, (float(*)[24][24])l_c1->d_preact);
+
+	cpu_apply_grad(l_f->weight, l_f->d_weight, l_f->M * l_f->N);
+	cpu_apply_grad(l_s1->weight, l_s1->d_weight, l_s1->M * l_s1->N);
+	cpu_apply_grad(l_c1->weight, l_c1->d_weight, l_c1->M * l_c1->N);
+
+	end = clock();
+	return ((double)(end - start)) / CLOCKS_PER_SEC;
+}
+
 static void learn(int start_epoch, int end_epoch)
 {
 	static cublasHandle_t blas;
@@ -287,7 +328,7 @@ static void learn(int start_epoch, int end_epoch)
 	{
 		err = 0.0f;
 
-		for (int i = 0; i < train_cnt; ++i)
+		for (int i = 0; i < 5000; ++i)
 		{
 			float tmp_err;
 
@@ -330,7 +371,7 @@ static void cpu_learn(int start_epoch, int end_epoch)
 	{
 		err = 0.0f;
 
-		for (int i = 0; i < train_cnt; ++i)
+		for (int i = 0; i < 5000; ++i)
 		{
 			float tmp_err;
 
@@ -347,11 +388,11 @@ static void cpu_learn(int start_epoch, int end_epoch)
 			// cublasSnrm2(blas, 10, l_f->d_preact, 1, &tmp_err);
 			err += tmp_err;
 
-			time_taken += back_pass();
+			time_taken += cpu_back_pass();
 		}
 
 		err /= train_cnt;
-		fprintf(stdout, "epoch: %d, error: %e, time_on_gpu: %lf\n", iter, err, time_taken);
+		fprintf(stdout, "epoch: %d, error: %e, time_on_cpu: %lf\n", iter, err, time_taken);
 
 		if (err < threshold)
 		{
@@ -384,6 +425,27 @@ static unsigned int classify(double data[28][28])
 
 	return max;
 }
+// Returns label of given data (0-9)
+static unsigned int cpu_classify(double data[28][28])
+{
+	float res[10];
+
+	cpu_forward_pass(data);
+
+	unsigned int max = 0;
+
+	memcpy(res, l_f->output, sizeof(float) * 10);
+
+	for (int i = 1; i < 10; ++i)
+	{
+		if (res[max] < res[i])
+		{
+			max = i;
+		}
+	}
+
+	return max;
+}
 
 // Perform forward propagation of test data
 static void test()
@@ -393,6 +455,23 @@ static void test()
 	for (int i = 0; i < test_cnt; ++i)
 	{
 		if (classify(test_set[i].data) != test_set[i].label)
+		{
+			++error;
+		}
+	}
+
+	fprintf(stdout, "Test Accuracy: %.2lf%%\n",
+					double(test_cnt - error) / double(test_cnt) * 100.0);
+}
+
+// Perform forward propagation of test data
+static void cpu_test()
+{
+	int error = 0;
+
+	for (int i = 0; i < test_cnt; ++i)
+	{
+		if (cpu_classify(test_set[i].data) != test_set[i].label)
 		{
 			++error;
 		}
