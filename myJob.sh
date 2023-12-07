@@ -20,10 +20,10 @@
 # ./CNN -train 5 "weights_gpu.txt" >> "gpu_learn.txt"
 
 # # Testing on GPU
-./CNN -test "weights_gpu.txt" >> "gpu_test.txt"
+# ./CNN -test "weights_gpu.txt" >> "gpu_test.txt"
 
 # # Training on CPU
 # ./CNN -cputrain 5 "weights_cpu.txt" >> "cpu_learn.txt"
 
 # Testing on CPU
-# ./CNN -cputest "weights_cpu.txt" >> "cpu_test.txt"
+./CNN -cputest "weights_cpu.txt" >> "cpu_test.txt"

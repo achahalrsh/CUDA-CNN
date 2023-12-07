@@ -272,7 +272,7 @@ static double forward_pass(double data[28][28])
 	fp_preact_f<<<64, 64>>>((float(*)[6][6])l_s1->output, l_f->preact, (float(*)[6][6][6])l_f->weight);
 	fp_bias_f<<<64, 64>>>(l_f->preact, l_f->bias);
 	apply_step_function<<<64, 64>>>(l_f->preact, l_f->output, l_f->O);
-	time_feedfwd += ((double)(clock() - start_pool)) / CLOCKS_PER_SEC;
+	time_feedfwd += ((double)(clock() - start_feed_fwd)) / CLOCKS_PER_SEC;
 
 	return ((double)(clock() - start)) / CLOCKS_PER_SEC;
 }
@@ -319,7 +319,7 @@ static double cpu_forward_pass(double data[28][28])
 	cpu_fp_preact_f((float(*)[6][6])l_s1->output, l_f->preact, (float(*)[6][6][6])l_f->weight);
 	cpu_fp_bias_f(l_f->preact, l_f->bias);
 	cpu_apply_step_function(l_f->preact, l_f->output, l_f->O);
-	time_feedfwd += ((double)(clock() - start_pool)) / CLOCKS_PER_SEC;
+	time_feedfwd += ((double)(clock() - start_feed_fwd)) / CLOCKS_PER_SEC;
 
 	return ((double)(clock() - start)) / CLOCKS_PER_SEC;
 }

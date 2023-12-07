@@ -1,24 +1,24 @@
 Learning
-epoch: 1, error: 2.106416e-02, time_fwd_on_cpu: 2.038041
-, time_bwd_on_cpu: 2.131910
-epoch: 2, error: 2.089737e-02, time_fwd_on_cpu: 4.071382
-, time_bwd_on_cpu: 4.265302
-epoch: 3, error: 2.062315e-02, time_fwd_on_cpu: 6.116083
-, time_bwd_on_cpu: 6.392701
-epoch: 4, error: 2.001729e-02, time_fwd_on_cpu: 8.148313
-, time_bwd_on_cpu: 8.526681
-epoch: 5, error: 1.895534e-02, time_fwd_on_cpu: 10.174086
-, time_bwd_on_cpu: 10.663984
-Total train time: 20.87
+epoch: 1, error: 4.164869e-02, time_fwd_on_cpu: 4.068888
+, time_bwd_on_cpu: 4.265196
+epoch: 2, error: 4.076183e-02, time_fwd_on_cpu: 8.139057
+, time_bwd_on_cpu: 8.533425
+epoch: 3, error: 3.810832e-02, time_fwd_on_cpu: 12.209882
+, time_bwd_on_cpu: 12.794270
+epoch: 4, error: 3.418361e-02, time_fwd_on_cpu: 16.281063
+, time_bwd_on_cpu: 17.057087
+epoch: 5, error: 3.076495e-02, time_fwd_on_cpu: 20.357839
+, time_bwd_on_cpu: 21.313771
+Total train time: 41.7354
 Total test time: 0
-Total dataload time: 0.594954
-Total layer init time: 5.6e-05
-Total forward pass time: 10.1741
-Fwd convolution time: 9.6319
-Fwd poolin time: 0.341201
-Final feed fwd layer time: 0.531873
-Total backward pass time: 10.664
-Bwd convolution time: 9.83909
-Bwd poolin time: 0.366838
-Final feed bwd layer time: 0.4092
-Save weights time: 0.001011
+Total dataload time: 0.558889
+Total layer init time: 5.8e-05
+Total forward pass time: 20.3578
+Fwd convolution time: 19.2829
+Fwd poolin time: 0.679346
+Final feed fwd layer time: 0.364475
+Total backward pass time: 21.3138
+Bwd convolution time: 19.6592
+Bwd poolin time: 0.735905
+Final feed bwd layer time: 0.820567
+Save weights time: 0.001036
