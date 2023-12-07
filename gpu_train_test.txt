@@ -1,0 +1,50 @@
+Learning
+epoch: 1, error: 2.109906e-02, time_fwd_on_gpu: 0.060679
+, time_bwd_on_gpu: 0.028465
+epoch: 2, error: 2.082608e-02, time_fwd_on_gpu: 0.117055
+, time_bwd_on_gpu: 0.059012
+epoch: 3, error: 2.051432e-02, time_fwd_on_gpu: 0.173329
+, time_bwd_on_gpu: 0.087288
+epoch: 4, error: 2.000041e-02, time_fwd_on_gpu: 0.229550
+, time_bwd_on_gpu: 0.117660
+epoch: 5, error: 1.911697e-02, time_fwd_on_gpu: 0.285775
+, time_bwd_on_gpu: 0.145940
+Test Accuracy: 9.58%
+Total train time: 0.754957
+Total test time: 0.553611
+Total dataload time: 0.557469
+Total layer init time: 0.125701
+Total forward pass time: 0.55311
+Fwd convolution time: 0.331019
+Fwd poolin time: 0.072129
+Final feed fwd layer time: 0.189222
+Total backward pass time: 0.14594
+Bwd convolution time: 0.035789
+Bwd poolin time: 0.01491
+Final feed bwd layer time: 0.048898
+Save weights time: 0
+Learning
+epoch: 1, error: 9.734222e-02, time_fwd_on_gpu: 0.294795
+, time_bwd_on_gpu: 0.143309
+epoch: 2, error: 7.057662e-02, time_fwd_on_gpu: 0.576505
+, time_bwd_on_gpu: 0.286194
+epoch: 3, error: 5.612434e-02, time_fwd_on_gpu: 0.857738
+, time_bwd_on_gpu: 0.427110
+epoch: 4, error: 4.967743e-02, time_fwd_on_gpu: 1.141725
+, time_bwd_on_gpu: 0.568203
+epoch: 5, error: 4.566403e-02, time_fwd_on_gpu: 1.417342
+, time_bwd_on_gpu: 0.709047
+Test Accuracy: 78.15%
+Total train time: 3.75626
+Total test time: 0.557435
+Total dataload time: 0.55793
+Total layer init time: 0.124124
+Total forward pass time: 1.68386
+Fwd convolution time: 1.16207
+Fwd poolin time: 0.172208
+Final feed fwd layer time: 0.444956
+Total backward pass time: 0.709047
+Bwd convolution time: 0.168269
+Bwd poolin time: 0.076805
+Final feed bwd layer time: 0.242309
+Save weights time: 0

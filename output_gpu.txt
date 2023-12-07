@@ -1,0 +1,25 @@
+Learning
+epoch: 1, error: 2.110948e-02, time_fwd_on_gpu: 0.059977
+, time_bwd_on_gpu: 0.028323
+epoch: 2, error: 2.088112e-02, time_fwd_on_gpu: 0.116128
+, time_bwd_on_gpu: 0.056854
+epoch: 3, error: 2.064840e-02, time_fwd_on_gpu: 0.172343
+, time_bwd_on_gpu: 0.085349
+epoch: 4, error: 2.036044e-02, time_fwd_on_gpu: 0.228544
+, time_bwd_on_gpu: 0.113856
+epoch: 5, error: 1.975492e-02, time_fwd_on_gpu: 0.284687
+, time_bwd_on_gpu: 0.142084
+Test Accuracy: 9.58%
+Total train time: 0.753721
+Total test time: 0.556589
+Total dataload time: 0.56869
+Total layer init time: 0.133102
+Total forward pass time: 0.284687
+Fwd convolution time: 0.333649
+Fwd poolin time: 0.073266
+Final feed fwd layer time: 0.194615
+Total backward pass time: 0.142084
+Bwd convolution time: 0.033694
+Bwd poolin time: 0.015066
+Final feed bwd layer time: 0.048485
+Save weights time: 0

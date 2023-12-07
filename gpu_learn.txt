@@ -1,0 +1,22 @@
+Learning
+epoch: 1, error: 2.105409e-02, time_fwd_on_gpu: 0.062744
+, time_bwd_on_gpu: 0.028789
+epoch: 2, error: 2.081581e-02, time_fwd_on_gpu: 0.122056
+, time_bwd_on_gpu: 0.057380
+epoch: 3, error: 2.054411e-02, time_fwd_on_gpu: 0.178745
+, time_bwd_on_gpu: 0.085825
+epoch: 4, error: 2.005727e-02, time_fwd_on_gpu: 0.235186
+, time_bwd_on_gpu: 0.116374
+epoch: 5, error: 1.915912e-02, time_fwd_on_gpu: 0.291734
+, time_bwd_on_gpu: 0.144827
+Learning
+epoch: 1, error: 1.006759e-01, time_fwd_on_gpu: 0.290263
+, time_bwd_on_gpu: 0.140699
+epoch: 2, error: 8.352640e-02, time_fwd_on_gpu: 0.570750
+, time_bwd_on_gpu: 0.284460
+epoch: 3, error: 6.191574e-02, time_fwd_on_gpu: 0.850620
+, time_bwd_on_gpu: 0.425486
+epoch: 4, error: 5.253038e-02, time_fwd_on_gpu: 1.134322
+, time_bwd_on_gpu: 0.565513
+epoch: 5, error: 4.739427e-02, time_fwd_on_gpu: 1.406900
+, time_bwd_on_gpu: 0.707213

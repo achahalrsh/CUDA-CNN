@@ -1,0 +1,14 @@
+Test Accuracy: 10.84%
+Total train time: 0
+Total test time: 20.3723
+Total dataload time: 0.558976
+Total layer init time: 0.00069
+Total forward pass time: 0
+Fwd convolution time: 19.2572
+Fwd poolin time: 0.680225
+Final feed fwd layer time: 1.05271
+Total backward pass time: 0
+Bwd convolution time: 0
+Bwd poolin time: 0
+Final feed bwd layer time: 0
+Save weights time: 0

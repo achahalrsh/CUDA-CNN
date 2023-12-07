@@ -13,8 +13,17 @@
 #Training command
 # ./CNN -train 5 "weights.txt" >> "output.txt"
 
-# # Traniing and Testing on GPU
-# ./CNN -both >> "output.txt"
+# # Training and Testing on GPU
+# ./CNN -both >> "gpu_train_test.txt"
 
-# # Traniing and Testing on CPU
-./CNN -cpu >> "output.txt"
+# Traniing on GPU
+# ./CNN -train 5 "weights_gpu.txt" >> "gpu_learn.txt"
+
+# # Testing on GPU
+./CNN -test "weights_gpu.txt" >> "gpu_test.txt"
+
+# # Training on CPU
+# ./CNN -cputrain 5 "weights_cpu.txt" >> "cpu_learn.txt"
+
+# Testing on CPU
+# ./CNN -cputest "weights_cpu.txt" >> "cpu_test.txt"
